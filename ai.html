@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ѕαм αι</title>
+    <link rel="icon" href="https://i.ibb.co/T4bM3sh/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: auto;
+            position: relative;
+            font-family: 'Poppins', sans-serif; 
+            background: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .modal, .welcome-modal, .slide-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s;
+        }
+        .modal-content, .welcome-content, .slide-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: slideIn 0.5s;
+            position: relative;
+        }
+        .modal h2, .welcome-content h2 {
+            margin: 0;
+            font-size: 28px;
+            color: black;
+        }
+        .modal p, .welcome-content p {
+            margin: 10px 0 30px;
+            font-size: 18px;
+            color: #555;
+        }
+        .modal p1, .welcome-content p1 {
+            margin: 0px 0 2px;
+            font-size: 10px;
+            color: #555;
+        }
+        .modal-button, .welcome-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background: linear-gradient(135deg, #4a90e2, #0062cc);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 70%;
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+        .modal-button:hover, .welcome-button:hover {
+            opacity: 0.85;
+            transform: translateY(-5px);
+        }
+        .modal-button:active, .welcome-button:active {
+            transform: translateY(2px);
+        }
+        .timer {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #888;
+        }
+        .welcome-input {
+            padding: 15px;
+            font-size: 18px;
+            width: calc(100% - 30px);
+            border-radius: 10px;
+            border: 1px solid black;
+            background: #f9f9f9;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .blur-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.8); /* Optional: add transparency to the overlay */
+            backdrop-filter: blur(10px);
+            pointer-events: all; /* Ensure the overlay captures events */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .blur-overlay span {
+            color: black;
+        }
+        .slide-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            animation: slideIn 0.5s;
+        }
+        .slide-content {
+            background: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blur-overlay">
+        <span>Made with 💜 by Samartha Gs</span>
+    </div>
+    <iframe id="mainFrame" src="https://aichatbot.sendbird.com/playground/index.html?app_id=2F85F8B8-62DD-415C-AC9C-C36B91EBB04C&bot_id=onboarding_bot&region=ap-5"></iframe>
+
+</body>
+</html>

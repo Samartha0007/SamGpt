@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam-Advance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fullscreen iframe to display the web content */
+        #fullScreenFrame {
+            width: 100%;
+            height: calc(100vh - 70px);
+            border: none;
+            z-index: 1;
+        }
+
+        .bottom-menu {
+            width: 100%;
+            max-width: 450px;
+            position: fixed;
+            bottom: 10px;
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+
+        .menu-item {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            transition: color 0.4s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item.active {
+            color: #6a0dad; /* Purple for active item */
+        }
+
+        .menu-item i {
+            font-size: 26px;
+            margin-bottom: 5px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item span {
+            font-size: 12px;
+            display: block;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .menu-item:hover {
+            color: #6a0dad;
+        }
+
+        .menu-item:hover i {
+            transform: translateY(-5px);
+        }
+
+        .menu-item:hover span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            .menu-item i {
+                font-size: 22px;
+            }
+
+            .menu-item span {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-item span {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!-- Fullscreen iframe to load the web content -->
+    <iframe id="fullScreenFrame" src="https://samarthags.cloud"></iframe>
+
+    <div class="bottom-menu">
+        <div class="menu-item" onclick="openPage('/image.html', this)">
+            <i class="fas fa-image"></i>
+            <span>Images</span>
+        </div>
+        <div class="menu-item" onclick="openPage('/search.html', this)">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </div>
+        <div class="menu-item center active" onclick="openPage('/ai.html', this)">
+            <i class="fas fa-robot"></i> 
+            <span>Chat</span> 
+        </div>
+        <div class="menu-item" onclick="openPage('/support.html', this)">
+            <i class="fas fa-heart"></i>
+            <span>Favorites</span>
+        </div>
+        <div class="menu-item" onclick="openPage('/sammu.html', this)">
+            <i class="fas fa-user-shield"></i>
+            <span>Profile</span>
+        </div>
+    </div>
+
+    <script>
+        // Function to change the iframe source when a menu item is clicked
+        function openPage(url, element) {
+            var frame = document.getElementById('fullScreenFrame');
+            frame.src = url;
+
+            // Remove 'active' class from all items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked item
+            element.classList.add('active');
+        }
+
+        // Set default page to the AI chatbot and activate the center item when the page loads
+        window.onload = function() {
+            openPage('/ai.html', document.querySelector('.center')); // AI Chatbot loads by default
+        }
+    </script>
+
+</body>
+</html>

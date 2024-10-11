@@ -809,10 +809,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     displayNewQuoteAndTheme();
-    document.getElementById("change-quote-btn").addEventListener("click", function(event) {
-        event.preventDefault();
-        displayNewQuoteAndTheme();
-    });
+document.querySelector(".get-started-text").addEventListener("click", function(event) {
+    event.preventDefault();
+    displayNewQuoteAndTheme();
+});
     setInterval(displayNewQuoteAndTheme, 110000);
 });
 

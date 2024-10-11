@@ -21,9 +21,7 @@
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             flex-direction: column; 
-            transition: background 0.5s ease-in-out;
-            background: linear-gradient(45deg, #7F7FD5, #86A8E7, #91EAE4);
-        }
+            background:        }
 
         .container {
             position: relative;
@@ -40,7 +38,7 @@
             margin-bottom: 60px;
             animation: fadeSlideIn 1s ease-in-out;
             background: transparent;
-            color: #fff;
+            color: black;
             margin-bottom: 110px; 
         }
 
@@ -51,7 +49,7 @@
             white-space: pre-line;
             overflow: hidden;
             display: inline-block;
-            color: #fff;
+            color: black;
             word-break: keep-all; 
         }
 
@@ -62,46 +60,31 @@
         }
 
         #change-quote-btn {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
-            cursor: pointer;
+            padding: 15px 40px;
+            font-size: 0.8rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #6a5acd, #8a2be2);
             border: none;
-            border-radius: 15px;
-            background-color: transparent;
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s, color 0.3s;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            text-decoration: none;
+
         }
 
         #change-quote-btn:hover {
-            background-color: #333;
-            color: #fff;
-        }
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 
-        .social-icons {
-            position: absolute;
-            bottom: -130px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .social-icon {
-            margin: 0 10px;
-            font-size: 15px;
-            color: white;
-        }
-
-        .social-icon:hover {
-            color: #ccc;
         }
 p {
-    color: #fff;
-    font-size: 9px;
+    color: black;
+    font-size: 10px;
     margin-top: 20px;
     animation: fadeIn 1s ease-in-out;
     position: absolute;
@@ -112,12 +95,11 @@ p {
 }
 
 
-    </style>
-<script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));webpushr('setup',{'key':'BOqFVmJqVyE1dUir5f4gfHO0ACwCYr93YtslcDJe3YJ_LRBUJ4nSZCyO7euj-OMaXY_hPcMgZb2WWTVfUZtqEzU' });</script>
 
-<script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
-fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
-webpushr('setup',{'key':'BOqFVmJqVyE1dUir5f4gfHO0ACwCYr93YtslcDJe3YJ_LRBUJ4nSZCyO7euj-OMaXY_hPcMgZb2WWTVfUZtqEzU' });</script>
+
+    </style>
+
+
 
 </head>
 <body>
@@ -129,21 +111,9 @@ webpushr('setup',{'key':'BOqFVmJqVyE1dUir5f4gfHO0ACwCYr93YtslcDJe3YJ_LRBUJ4nSZCy
         </div>
 
         <button id="change-quote-btn">Renew Quote</button>
-         <p>New quotes will be automatically generated every 20 seconds.</p>
+                 <p>Made with 💜 by Samarth </p>
 
 
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/samarthags/" class="social-icon"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/@samarth600/" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/Samartha_gs" class="social-icon"><i class="fab fa-telegram"></i></a>
-        <a href="mailto:samarthags121@gmail.com" class="social-icon"><i class="far fa-envelope"></i></a>
-        <a href="https://samarthags.cloud" class="social-icon"><i class="fas fa-external-link-alt"></i></a>
-        </div>
-    </div>
-    
-
-    
-    
     <script>
 
 
@@ -777,41 +747,8 @@ const quotes = [
 ];
 
         const colors = [
-            "linear-gradient(45deg, #7F7FD5, #86A8E7, #91EAE4)",
-            "linear-gradient(45deg, #FFB6B9, #FF79C6, #833AB4)",
-            "linear-gradient(45deg, #FF5F6D, #FFC371, #6D214F)",
-            "linear-gradient(45deg, #F9627D, #1D976C, #93F9B9)",
-            "linear-gradient(45deg, #00AEFF, #FF6A00, #7A00FF)",
-            "linear-gradient(45deg, #B721FF, #21D4FD, #21D4FD)",
-            "linear-gradient(45deg, #00B4DB, #0083B0, #FF4E50)",
-            "linear-gradient(45deg, #2C3E50, #FD746C, #FFB88C)",
-            "linear-gradient(45deg, #0F2027, #203A43, #2C5364)",
-            "linear-gradient(45deg, #7028E4, #E5B2CA, #7028E4)",
-            "linear-gradient(45deg, #F9D423, #E6B980, #FE8C00)",
-            "linear-gradient(45deg, #9D50BB, #6E48AA, #6E48AA)",
-            "linear-gradient(45deg, #02AAB0, #00CDAC, #F8FFAE)",
-            "linear-gradient(45deg, #FF6B6B, #556270)", 
-            "linear-gradient(45deg, #8A2387, #E94057, #F27121)",
-            "linear-gradient(45deg, #48C6EF, #6F86D6)", 
-            "linear-gradient(45deg, #E53935, #B71C1C)", 
-            "linear-gradient(45deg, #D38312, #A83279======================================================================================)", 
-            "linear-gradient(45deg, #DA4453, #89216B)", 
-            "linear-gradient(45deg, #283048, #859398)", 
-            "linear-gradient(45deg, #9796f0, #fbc7d4)", 
-            "linear-gradient(45deg, #DA22FF, #9733EE)", 
-            "linear-gradient(45deg, #1e130c, #9a8478)", 
-            "linear-gradient(45deg, #4B79A1, #283E51)", 
-            "linear-gradient(45deg, #f12711, #f5af19)", 
-            "linear-gradient(45deg, #9D50BB, #6E48AA)", 
-            "linear-gradient(45deg, #005AA7, #FFFDE4)", 
-            "linear-gradient(45deg, #D38312, #A83279)", 
-            "linear-gradient(45deg, #ff8008, #ffc837)", 
-            "linear-gradient(45deg, #2b5876, #4e4376)", 
-            "linear-gradient(45deg, #2BC0E4, #EAECC6)", 
-            "linear-gradient(45deg, #FFE29F, #FFA99F)", 
-            "linear-gradient(45deg, #6190E8, #A7BFE8)", 
-            "linear-gradient(45deg, #FC5C7D, #6A82FB)", 
-            "linear-gradient(45deg, #232526, #414345)", 
+
+            "linear-gradient(45deg, #232526, #fffff)", 
         ];
 let quoteIndex = 0;
 let shuffledQuotes = shuffleArray(quotes);

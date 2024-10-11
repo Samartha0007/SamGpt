@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam-Image</title>
+    <title>Sam-Image Carousel</title>
     <style>
         body {
             margin: 0;
@@ -21,19 +21,17 @@
             text-align: center;
             position: relative;
             width: 100%;
-            max-width: 600px; /* Limit container width for larger screens */
+            max-width: 600px;
         }
 
         /* Button CSS */
         .get-started-container {
-            position: relative;
             text-align: center;
             margin-bottom: 20px;
         }
 
         .get-started-text {
-            display: inline-block;
-            padding: 15px 40px; /* Adjusted padding for mobile */
+            padding: 15px 40px;
             font-size: 1.0rem;
             color: #ffffff;
             background: linear-gradient(135deg, #6a5acd, #8a2be2);
@@ -43,9 +41,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
-            overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             font-weight: bold;
             text-decoration: none;
         }
@@ -53,6 +50,10 @@
         .get-started-text:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .get-started-text.hidden {
+            display: none;
         }
 
         /* Modal CSS */
@@ -75,8 +76,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 80%; /* Responsive width */
-            max-width: 300px; /* Limit modal width for larger screens */
+            width: 80%;
+            max-width: 300px;
         }
 
         .modal input, .modal textarea {
@@ -99,18 +100,14 @@
             border: none;
             border-radius: 20px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
             cursor: not-allowed;
-            transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            text-transform: uppercase;
             font-weight: bold;
-            text-decoration: none;
+            transition: background 0.3s ease;
         }
 
         .submit-button:disabled {
-            background: #b3b3b3; /* Disabled state */
+            background: #b3b3b3;
             cursor: not-allowed;
         }
 
@@ -124,7 +121,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 500px; /* Adjusted height for mobile */
+            height: 500px;
             position: relative;
             margin-bottom: 20px;
             overflow: hidden;
@@ -133,19 +130,19 @@
         .carousel img {
             width: 300px;
             height: 300px;
-            border-radius: 15px; /* Added border-radius for rounded edges */
+            border-radius: 15px;
             position: absolute;
             top: 50%;
             left: 100%;
-            transform: translateY(-50%); /* Center vertically */
-            transition: left 1s ease;
-            opacity: 0; /* Start hidden */
+            transform: translateY(-50%);
+            transition: left 1s ease, opacity 1s ease;
+            opacity: 0;
         }
 
         .carousel img.active {
             left: 50%;
-            transform: translate(-50%, -50%); /* Center horizontally and vertically */
-            opacity: 1; /* Show active image */
+            transform: translate(-50%, -50%);
+            opacity: 1;
         }
 
         .carousel img.prev {
@@ -158,22 +155,29 @@
     <div class="container">
         <!-- Image Carousel -->
         <div class="carousel" id="carousel">
-            <img src="https://i.ibb.co/T4bM3sh/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" alt="Image 1" class="active">
-            <img src="https://via.placeholder.com/300x300.png?text=Image+2" alt="Image 2">
-            <img src="https://via.placeholder.com/300x300.png?text=Image+3" alt="Image 3">
-            <img src="https://via.placeholder.com/300x300.png?text=Image+4" alt="Image 4">
-            <img src="https://via.placeholder.com/300x300.png?text=Image+5" alt="Image 5">
+            <img src="https://i.ibb.co/xCsFDvY/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" alt="Image 1" class="active">
+            <img src="https://i.ibb.co/cvh8mvt/create-like-welcome-to-sam-ai-with-sub-text-enhance-the-beauty-of-ai-in-a-normal-image-view.jpg" alt="Image 2">
+            <img src="https://i.ibb.co/s3RKr15/IMG-20240908-215152-181.jpg" alt="Image 3">
+            <img src="https://i.ibb.co/Fwf0s5S/16-year-boy-cool-and-standard-in-his-room-with-samarthags-cloud-text-in-the-wall-on-3d-but-look-like.jpg" alt="Image 4">
+            <img src="https://i.ibb.co/wMnPtfG/nature.jpg" alt="Image 5">
+            <img src="https://i.ibb.co/SPL8Z9R/music-logo-search-logo-and-ai-chat-bot-logo.jpg" alt="Image 5">
+            <img src="https://i.ibb.co/xHG04d2/a-cool-virtual-animated-room-with-all-normal-elements-and-one-side-of-wall-has-a-text-samarthags-clo.jpg" alt="Image 5">
+             <img src="https://i.ibb.co/QfkQ5nV/a-16-year-old-boy-standing-at-the-top-of-the-building-with-cartoon-3d-graphics-at-the-top-of-the-neo.jpg" alt="Image 5">
+           <img src="https://i.ibb.co/61C7rQQ/genai-m4-lla-frc-v3-upload-img-20191514-09-08-2024-08-51-02-476732-2080434778656110948.jpg" alt="Image 5">
+           <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Image 5">
         </div>
-
+        <!-- Get Started Button -->
         <div class="get-started-container">
             <button class="get-started-text" id="getStartedButton">Get Started</button>
         </div>
     </div>
 
+    <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <input type="text" id="nameInput" placeholder="Enter your Telegram or other profiles">
-            <textarea id="descriptionInput" placeholder="Text your dream image 🙃"></textarea>
+            <textarea id="descriptionInput" placeholder="Text your dream image 🙃
+Example: Make that a 16-year student studing in his table,etc...."></textarea>
             <button class="submit-button" id="submitBtn" disabled>Create</button>
         </div>
     </div>
@@ -212,14 +216,26 @@
                     .then(response => {
                         console.log('Success:', response);
                         modal.style.display = "none";
-                        getStartedButton.textContent = "";
-                        getStartedButton.style.display = "none";
+                        resetForm();  // Clear inputs and reset form after submission
+                        hideGetStartedButton();  // Hide Get Started button
                     })
                     .catch(error => {
                         console.error('Error:', error);
                     });
             }
         };
+
+        // Reset form and disable submit button
+        function resetForm() {
+            nameInput.value = "";
+            descriptionInput.value = "";
+            submitButton.disabled = true;
+        }
+
+        // Hide Get Started Button after submission
+        function hideGetStartedButton() {
+            getStartedButton.classList.add('hidden');
+        }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
@@ -254,4 +270,3 @@
     </script>
 </body>
 </html>
-

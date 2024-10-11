@@ -160,11 +160,11 @@
             <img src="https://i.ibb.co/s3RKr15/IMG-20240908-215152-181.jpg" alt="Image 3">
             <img src="https://i.ibb.co/Fwf0s5S/16-year-boy-cool-and-standard-in-his-room-with-samarthags-cloud-text-in-the-wall-on-3d-but-look-like.jpg" alt="Image 4">
             <img src="https://i.ibb.co/wMnPtfG/nature.jpg" alt="Image 5">
-            <img src="https://i.ibb.co/SPL8Z9R/music-logo-search-logo-and-ai-chat-bot-logo.jpg" alt="Image 5">
-            <img src="https://i.ibb.co/xHG04d2/a-cool-virtual-animated-room-with-all-normal-elements-and-one-side-of-wall-has-a-text-samarthags-clo.jpg" alt="Image 5">
-             <img src="https://i.ibb.co/QfkQ5nV/a-16-year-old-boy-standing-at-the-top-of-the-building-with-cartoon-3d-graphics-at-the-top-of-the-neo.jpg" alt="Image 5">
-           <img src="https://i.ibb.co/61C7rQQ/genai-m4-lla-frc-v3-upload-img-20191514-09-08-2024-08-51-02-476732-2080434778656110948.jpg" alt="Image 5">
-           <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Image 5">
+            <img src="https://i.ibb.co/SPL8Z9R/music-logo-search-logo-and-ai-chat-bot-logo.jpg" alt="Image 6">
+            <img src="https://i.ibb.co/xHG04d2/a-cool-virtual-animated-room-with-all-normal-elements-and-one-side-of-wall-has-a-text-samarthags-clo.jpg" alt="Image 7">
+            <img src="https://i.ibb.co/QfkQ5nV/a-16-year-old-boy-standing-at-the-top-of-the-building-with-cartoon-3d-graphics-at-the-top-of-the-neo.jpg" alt="Image 8">
+            <img src="https://i.ibb.co/61C7rQQ/genai-m4-lla-frc-v3-upload-img-20191514-09-08-2024-08-51-02-476732-2080434778656110948.jpg" alt="Image 9">
+            <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Image 10">
         </div>
         <!-- Get Started Button -->
         <div class="get-started-container">
@@ -176,8 +176,7 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <input type="text" id="nameInput" placeholder="Enter your Telegram or other profiles">
-            <textarea id="descriptionInput" placeholder="Text your dream image 🙃
-Example: Make that a 16-year student studing in his table,etc...."></textarea>
+            <textarea id="descriptionInput" placeholder="Text your dream image 🙃 Example: Make that a 16-year student studying at his table, etc."></textarea>
             <button class="submit-button" id="submitBtn" disabled>Create</button>
         </div>
     </div>
@@ -190,9 +189,9 @@ Example: Make that a 16-year student studing in his table,etc...."></textarea>
         const descriptionInput = document.getElementById("descriptionInput");
 
         // Open modal on button click
-        getStartedButton.onclick = function() {
+        getStartedButton.onclick = function () {
             modal.style.display = "flex";
-        }
+        };
 
         // Enable submit button only when inputs are filled
         nameInput.oninput = toggleSubmitButton;
@@ -205,7 +204,7 @@ Example: Make that a 16-year student studing in his table,etc...."></textarea>
         }
 
         // Handle submit button click
-        submitButton.onclick = function() {
+        submitButton.onclick = function () {
             const name = nameInput.value.trim();
             const description = descriptionInput.value.trim();
 
@@ -234,39 +233,21 @@ Example: Make that a 16-year student studing in his table,etc...."></textarea>
 
         // Hide Get Started Button after submission
         function hideGetStartedButton() {
-            getStartedButton.classList.add('hidden');
+            getStartedButton.classList.add("hidden");
         }
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        // Image Carousel Logic
-        const images = document.querySelectorAll('.carousel img');
+        // Automatic Image Transition (Carousel)
+        const carouselImages = document.querySelectorAll(".carousel img");
         let currentIndex = 0;
 
         function showNextImage() {
-            images[currentIndex].classList.remove('active');
-            images[currentIndex].classList.add('prev');
-
-            currentIndex = (currentIndex + 1) % images.length;
-
-            images[currentIndex].classList.add('active');
-
-            setTimeout(() => {
-                images.forEach((img, index) => {
-                    if (index !== currentIndex) {
-                        img.classList.remove('prev');
-                    }
-                });
-            }, 1000);
+            carouselImages[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % carouselImages.length;
+            carouselImages[currentIndex].classList.add("active");
         }
 
-        // Set interval for carousel
-        setInterval(showNextImage, 3000);
+        setInterval(showNextImage, 3000);  // Change image every 3 seconds
     </script>
+
 </body>
 </html>

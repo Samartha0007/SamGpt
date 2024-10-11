@@ -34,7 +34,7 @@
         .get-started-text {
             display: inline-block;
             padding: 15px 40px; /* Adjusted padding for mobile */
-            font-size:1.0rem;
+            font-size: 1.0rem;
             color: #ffffff;
             background: linear-gradient(135deg, #6a5acd, #8a2be2);
             border: none;
@@ -50,27 +50,9 @@
             text-decoration: none;
         }
 
-        .get-started-text::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            transform: scale(0);
-            transition: transform 0.3s ease;
-        }
-
-        .get-started-text:hover::before {
-            transform: scale(1);
-        }
-
         .get-started-text:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            color: #000000;
         }
 
         /* Modal CSS */
@@ -122,7 +104,7 @@
             position: relative;
             overflow: hidden;
             cursor: not-allowed;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
             font-weight: bold;
             text-decoration: none;
         }
@@ -157,11 +139,13 @@
             left: 100%;
             transform: translateY(-50%); /* Center vertically */
             transition: left 1s ease;
+            opacity: 0; /* Start hidden */
         }
 
         .carousel img.active {
             left: 50%;
             transform: translate(-50%, -50%); /* Center horizontally and vertically */
+            opacity: 1; /* Show active image */
         }
 
         .carousel img.prev {
@@ -175,10 +159,10 @@
         <!-- Image Carousel -->
         <div class="carousel" id="carousel">
             <img src="https://i.ibb.co/T4bM3sh/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" alt="Image 1" class="active">
-            <img src="image2.jpg" alt="Image 2">
-            <img src="image3.jpg" alt="Image 3">
-            <img src="image4.jpg" alt="Image 4">
-            <img src="image5.jpg" alt="Image 5">
+            <img src="https://via.placeholder.com/300x300.png?text=Image+2" alt="Image 2">
+            <img src="https://via.placeholder.com/300x300.png?text=Image+3" alt="Image 3">
+            <img src="https://via.placeholder.com/300x300.png?text=Image+4" alt="Image 4">
+            <img src="https://via.placeholder.com/300x300.png?text=Image+5" alt="Image 5">
         </div>
 
         <div class="get-started-container">
@@ -201,10 +185,12 @@
         const nameInput = document.getElementById("nameInput");
         const descriptionInput = document.getElementById("descriptionInput");
 
+        // Open modal on button click
         getStartedButton.onclick = function() {
             modal.style.display = "flex";
         }
 
+        // Enable submit button only when inputs are filled
         nameInput.oninput = toggleSubmitButton;
         descriptionInput.oninput = toggleSubmitButton;
 
@@ -214,12 +200,13 @@
             submitButton.disabled = !(name && description);
         }
 
+        // Handle submit button click
         submitButton.onclick = function() {
             const name = nameInput.value.trim();
             const description = descriptionInput.value.trim();
 
             if (name && description) {
-                const url = https://api.callmebot.com/text.php?source=web&user=@samartha_gs&text=${encodeURIComponent(Name: ${name}, Description: ${description})};
+                const url = `https://api.callmebot.com/text.php?source=web&user=@samartha_gs&text=${encodeURIComponent(`Name: ${name}, Description: ${description}`)}`;
 
                 fetch(url)
                     .then(response => {
@@ -234,12 +221,14 @@
             }
         };
 
+        // Close modal when clicking outside of it
         window.onclick = function(event) {
             if (event.target === modal) {
                 modal.style.display = "none";
             }
         }
 
+        // Image Carousel Logic
         const images = document.querySelectorAll('.carousel img');
         let currentIndex = 0;
 
@@ -260,6 +249,7 @@
             }, 1000);
         }
 
+        // Set interval for carousel
         setInterval(showNextImage, 3000);
     </script>
 </body>

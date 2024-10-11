@@ -214,9 +214,9 @@
                 fetch(url)
                     .then(response => {
                         console.log('Success:', response);
-                        modal.style.display = "none";
-                        resetForm();  // Clear inputs and reset form after submission
+                        modal.style.display = "none";  // Close modal
                         hideGetStartedButton();  // Hide Get Started button
+                        resetForm();  // Clear inputs and reset form after submission
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -224,16 +224,14 @@
             }
         };
 
-        // Reset form and disable submit button
+        function hideGetStartedButton() {
+            getStartedButton.classList.add("hidden");
+        }
+
         function resetForm() {
             nameInput.value = "";
             descriptionInput.value = "";
             submitButton.disabled = true;
-        }
-
-        // Hide Get Started Button after submission
-        function hideGetStartedButton() {
-            getStartedButton.classList.add("hidden");
         }
 
         // Automatic Image Transition (Carousel)

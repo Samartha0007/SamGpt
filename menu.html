@@ -29,6 +29,12 @@
             z-index: 1;
         }
 
+        /* Adjusted iframe when showing the AI chatbot */
+        .ai-chatbot-frame {
+            margin-top: 20px; /* Pushes the chatbot page down a little */
+            height: calc(100vh - 90px); /* Adjusted height to account for the margin */
+        }
+
         .bottom-menu {
             width: 100%;
             max-width: 450px;
@@ -84,8 +90,6 @@
             transform: translateY(0);
         }
 
-        
-
         /* Media Query for responsiveness */
         @media (max-width: 768px) {
             .menu-item i {
@@ -108,7 +112,7 @@
 <body>
 
     <!-- Fullscreen iframe to load the web content -->
-    <iframe id="fullScreenFrame" src="/ai.html"></iframe>
+    <iframe id="fullScreenFrame" class="" src="/ai.html"></iframe>
 
     <div class="bottom-menu">
         <div class="menu-item" onclick="openPage('/image.html', this)">
@@ -125,7 +129,7 @@
         </div>
         <div class="menu-item" onclick="openPage('/quote.html', this)">
             <i class="fas fa-quote-left"></i>
-            <span>quotes</span>
+            <span>Quotes</span>
         </div>
         <div class="menu-item" onclick="openPage('https://samartha.infinityfreeapp.com/like.php', this)">
             <i class="fas fa-user-shield"></i>
@@ -138,6 +142,13 @@
         function openPage(url, element) {
             var frame = document.getElementById('fullScreenFrame');
             frame.src = url;
+
+            // Add special class if AI chatbot is selected
+            if (url === '/ai.html') {
+                frame.classList.add('ai-chatbot-frame'); // Add margin for AI chatbot
+            } else {
+                frame.classList.remove('ai-chatbot-frame'); // Remove margin for other pages
+            }
 
             // Remove 'active' class from all items
             document.querySelectorAll('.menu-item').forEach(item => {

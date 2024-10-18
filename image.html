@@ -52,69 +52,6 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .get-started-text.hidden {
-            display: none;
-        }
-
-        /* Modal CSS */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 80%;
-            max-width: 300px;
-        }
-
-        .modal input, .modal textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .modal textarea {
-            height: 100px;
-        }
-
-        .submit-button {
-            padding: 15px 40px;
-            font-size: 0.8rem;
-            color: #ffffff;
-            background: linear-gradient(135deg, #6a5acd, #8a2be2);
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            cursor: not-allowed;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        .submit-button:disabled {
-            background: #b3b3b3;
-            cursor: not-allowed;
-        }
-
-        .submit-button:enabled {
-            cursor: pointer;
-        }
-
         /* Carousel CSS */
         .carousel {
             display: flex;
@@ -155,16 +92,12 @@
     <div class="container">
         <!-- Image Carousel -->
         <div class="carousel" id="carousel">
-            <img src="https://i.ibb.co/xCsFDvY/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" alt="Image 1" class="active">
-            <img src="https://i.ibb.co/cvh8mvt/create-like-welcome-to-sam-ai-with-sub-text-enhance-the-beauty-of-ai-in-a-normal-image-view.jpg" alt="Image 2">
-            <img src="https://i.ibb.co/s3RKr15/IMG-20240908-215152-181.jpg" alt="Image 3">
-            <img src="https://i.ibb.co/Fwf0s5S/16-year-boy-cool-and-standard-in-his-room-with-samarthags-cloud-text-in-the-wall-on-3d-but-look-like.jpg" alt="Image 4">
-            <img src="https://i.ibb.co/wMnPtfG/nature.jpg" alt="Image 5">
-            <img src="https://i.ibb.co/SPL8Z9R/music-logo-search-logo-and-ai-chat-bot-logo.jpg" alt="Image 6">
-            <img src="https://i.ibb.co/xHG04d2/a-cool-virtual-animated-room-with-all-normal-elements-and-one-side-of-wall-has-a-text-samarthags-clo.jpg" alt="Image 7">
-            <img src="https://i.ibb.co/QfkQ5nV/a-16-year-old-boy-standing-at-the-top-of-the-building-with-cartoon-3d-graphics-at-the-top-of-the-neo.jpg" alt="Image 8">
-            <img src="https://i.ibb.co/61C7rQQ/genai-m4-lla-frc-v3-upload-img-20191514-09-08-2024-08-51-02-476732-2080434778656110948.jpg" alt="Image 9">
-            <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Image 10">
+            <img src="https://i.ibb.co/xCsFDvY/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" alt="A 16-year student is in his room" class="active">
+            <img src="https://i.ibb.co/cvh8mvt/create-like-welcome-to-sam-ai-with-sub-text-enhance-the-beauty-of-ai-in-a-normal-image-view.jpg" alt="Welcome to Sam AI with sub text">
+            <img src="https://i.ibb.co/s3RKr15/IMG-20240908-215152-181.jpg" alt="Personalized image view 3">
+            <img src="https://i.ibb.co/Fwf0s5S/16-year-boy-cool-and-standard-in-his-room-with-samarthags-cloud-text-in-the-wall-on-3d-but-look-like.jpg" alt="16-year-old boy with Samarthags cloud text">
+            <img src="https://i.ibb.co/wMnPtfG/nature.jpg" alt="Nature">
+            <img src="https://i.ibb.co/SPL8Z9R/music-logo-search-logo-and-ai-chat-bot-logo.jpg" alt="Music, search, AI chatbot logo">
         </div>
         <!-- Get Started Button -->
         <div class="get-started-container">
@@ -172,80 +105,41 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <input type="text" id="nameInput" placeholder="Enter your Telegram or other profiles">
-            <textarea id="descriptionInput" placeholder="Text your dream image 🙃 Example: Make that a 16-year student studying at his table, etc."></textarea>
-            <button class="submit-button" id="submitBtn" disabled>Create</button>
-        </div>
-    </div>
-
     <script>
-        const modal = document.getElementById("myModal");
         const getStartedButton = document.getElementById("getStartedButton");
-        const submitButton = document.getElementById("submitBtn");
-        const nameInput = document.getElementById("nameInput");
-        const descriptionInput = document.getElementById("descriptionInput");
-
-        // Open modal on button click
-        getStartedButton.onclick = function () {
-            modal.style.display = "flex";
-        };
-
-        // Enable submit button only when inputs are filled
-        nameInput.oninput = toggleSubmitButton;
-        descriptionInput.oninput = toggleSubmitButton;
-
-        function toggleSubmitButton() {
-            const name = nameInput.value.trim();
-            const description = descriptionInput.value.trim();
-            submitButton.disabled = !(name && description);
-        }
-
-        // Handle submit button click
-        submitButton.onclick = function () {
-            const name = nameInput.value.trim();
-            const description = descriptionInput.value.trim();
-
-            if (name && description) {
-                const url = `https://api.callmebot.com/text.php?source=web&user=@samartha_gs&text=${encodeURIComponent(`Name: ${name}, Description: ${description}`)}`;
-
-                fetch(url)
-                    .then(response => {
-                        console.log('Success:', response);
-                        modal.style.display = "none";  // Close modal
-                        hideGetStartedButton();  // Hide Get Started button
-                        resetForm();  // Clear inputs and reset form after submission
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
-        };
-
-        function hideGetStartedButton() {
-            getStartedButton.classList.add("hidden");
-        }
-
-        function resetForm() {
-            nameInput.value = "";
-            descriptionInput.value = "";
-            submitButton.disabled = true;
-        }
-
-        // Automatic Image Transition (Carousel)
-        const carouselImages = document.querySelectorAll(".carousel img");
+        const images = document.querySelectorAll('.carousel img');
         let currentIndex = 0;
 
+        // Image Carousel Logic
         function showNextImage() {
-            carouselImages[currentIndex].classList.remove("active");
-            currentIndex = (currentIndex + 1) % carouselImages.length;
-            carouselImages[currentIndex].classList.add("active");
+            images[currentIndex].classList.remove('active');
+            images[currentIndex].classList.add('prev');
+
+            currentIndex = (currentIndex + 1) % images.length;
+
+            images[currentIndex].classList.add('active');
+
+            setTimeout(() => {
+                images.forEach((img, index) => {
+                    if (index !== currentIndex) {
+                        img.classList.remove('prev');
+                    }
+                });
+            }, 1000);
         }
 
-        setInterval(showNextImage, 3000);  // Change image every 3 seconds
-    </script>
+        // Set interval for carousel
+        setInterval(showNextImage, 3000);
 
+        // Open Gmail with subject and body based on selected image
+        getStartedButton.onclick = function() {
+            const currentImage = images[currentIndex];
+            const subject = currentImage.alt;
+            const body = `I would like to create an image like this: ${subject}`;
+
+            const mailtoLink = `mailto:samarthags121@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        };
+    </script>
 </body>
 </html>

@@ -10,24 +10,21 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: ;
             color: black;
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
 
-      .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content vertically */
-    min-height: 100vh; /* Ensure the container takes the full viewport height */
-    margin: 0;
-    padding: 20px;
-}
-
-
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
 
         input[type="text"] {
             width: 100%;
@@ -36,26 +33,9 @@
             box-sizing: border-box;
             border: 1px solid #4e4e6f;
             border-radius: 10px;
-            background-color: ;
             color: black;
             font-size: 16px;
             transition: background-color 0.3s, color 0.3s;
-        }
-
-        button {
-            padding: 10px 50px;
-            border: none;
-            background-color: #5e60ce;
-            color: white;
-            cursor: pointer;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #4b4ecb;
         }
 
         .results, .article-content {
@@ -125,13 +105,6 @@
             animation: pulse 1.5s infinite;
         }
 
-        .footer {
-            margin-top: 50px;
-            padding: 10px;
-            text-align: center;
-            color: ;
-        }
-
         .scroll-to-top {
             display: none;
             position: fixed;
@@ -163,13 +136,14 @@
                 opacity: 1;
             }
         }
-  .circle-image {
-            width: 150px; /* Size of the circle */
-            height: 150px; /* Size of the circle */
+
+        .circle-image {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             overflow: hidden;
             display: inline-block;
-            vertical-align: middle; /* Aligns the image vertically with text */
+            vertical-align: middle;
         }
 
         .circle-image img {
@@ -181,26 +155,31 @@
 <body>
     <div class="container">
         <div class="search-box" id="searchBox">
-            <h1>
-
-        
-    </h1>
-            <input type="text" id="searchInput" placeholder="Search here anything.........!">
-            <button id="searchButton" onclick="search()">Search</button>
+            <h1></h1>
+            <input type="text" id="searchInput" placeholder="Search here anything.........!" onkeydown="handleKeyDown(event)">
         </div>
         <div class="results" id="results"></div>
         <div class="article-content" id="articleContent">
-            <button class="back-button" onclick="goBack()">Back !</button>
+            <button class="back-button" onclick="goBack()">Back!</button>
             <div id="articleText"></div>
+        </div>
+    </div>
+
     <button class="scroll-to-top" id="scrollToTopButton" onclick="scrollToTop()">⬆</button>
+
     <script>
+        // Function to handle the 'Enter' key press
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        }
+
         async function search() {
             const query = document.getElementById('searchInput').value;
             const resultsDiv = document.getElementById('results');
             const articleContentDiv = document.getElementById('articleContent');
             const articleTextDiv = document.getElementById('articleText');
-            const searchButton = document.getElementById('searchButton');
-            const searchInput = document.getElementById('searchInput');
             const searchBox = document.getElementById('searchBox');
 
             resultsDiv.innerHTML = '<div class="loading">Searching...</div>';
@@ -249,8 +228,6 @@
             const articleContentDiv = document.getElementById('articleContent');
             const articleTextDiv = document.getElementById('articleText');
             const searchBox = document.getElementById('searchBox');
-            const searchButton = document.getElementById('searchButton');
-            const searchInput = document.getElementById('searchInput');
 
             resultsDiv.style.display = 'none';
             articleContentDiv.style.display = 'block';
@@ -266,12 +243,7 @@
             }
             articleTextDiv.innerHTML += `<p>${page.extract}</p>`;
 
-            // Disable search input and button
             searchBox.style.display = 'none';
-            searchButton.disabled = true;
-            searchInput.disabled = true;
-
-            // Enable scroll to top button
             document.getElementById('scrollToTopButton').style.display = 'block';
         }
 
@@ -280,32 +252,16 @@
             const articleContentDiv = document.getElementById('articleContent');
             const articleTextDiv = document.getElementById('articleText');
             const searchBox = document.getElementById('searchBox');
-            const searchButton = document.getElementById('searchButton');
-            const searchInput = document.getElementById('searchInput');
 
             articleContentDiv.style.display = 'none';
             articleTextDiv.innerHTML = '';
             resultsDiv.style.display = 'block';
             searchBox.style.display = 'block'; // Show the search box
-            searchButton.disabled = false;
-            searchInput.disabled = false;
-
-            // Hide scroll to top button
             document.getElementById('scrollToTopButton').style.display = 'none';
         }
 
-        window.onscroll = function () {
-            const scrollToTopButton = document.getElementById('scrollToTopButton');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollToTopButton.style.display = 'block';
-            } else {
-                scrollToTopButton.style.display = 'none';
-            }
-        };
-
         function scrollToTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>

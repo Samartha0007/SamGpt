@@ -134,11 +134,18 @@
 
         .social-share {
             display: flex;
+            justify-content: center; /* Center the items */
+            align-items: center; /* Vertically center the items */
             width: 100%;
-            justify-content: space-between;
             color: ;
             font-size: 14px; /* Adjusted size for mobile */
             margin-top: 10px; /* Added margin for spacing */
+        }
+
+        .social-share .row {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            margin: 0 30px; /* Spacing between items */
         }
 
         @keyframes fadeIn {
@@ -148,6 +155,11 @@
     </style>
 </head>
 <body>
+    <audio id="background-sound" loop>
+        <source src="https://dl.sndup.net/vhn6t/Jj.mp3" type="audio/mpeg"> <!-- Replace with your audio file URL -->
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="img-area">
         <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Profile Picture">
     </div>
@@ -155,7 +167,6 @@
     <div class="name">Samarth Gs</div>
     <div class="tagline">An Simple App 👨‍💻</div>
    
-    
     <div class="social-icons">
         <a href="https://www.linkedin.com/in/samarthags/" target="_blank" class="fb"><i class="fab fa-linkedin"></i></a>
         <a href="https://twitter.com/@samarth600/" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
@@ -168,8 +179,8 @@
     </div>
     
     <div class="social-share">
-        <div class="row"><i class="fas fa-laptop-code"></i><span> 50+</span></div>
-        <div class="row"><i class="fas fa-lightbulb"></i><span> Oct-2020</span></div>
+        <div class="row"><i class="fas fa-laptop-code"></i><span> ‎‎ 50+</span></div>
+        <div class="row"><i class="fas fa-lightbulb"></i><span>‎  Oct-2020</span></div>
     </div>
 
     <script>
@@ -180,6 +191,11 @@
         function openWebsite() {
             window.open("https://samarthags.cloud/", "_blank"); // Replace with your website URL
         }
+
+        // Play background sound
+        const audio = document.getElementById('background-sound');
+        audio.volume = 0.4; // Set volume to 40%
+        audio.play();
     </script>
 </body>
 </html>

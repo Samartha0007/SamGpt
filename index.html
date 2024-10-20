@@ -144,6 +144,10 @@
     </style>
 </head>
 <body>
+  <audio id="background-sound" loop>
+        <source src="https://dl.sndup.net/ny4s7/Winterlands%20II-[AudioTrimmercom].mp3" type="audio/mpeg"> <!-- Replace with your audio file URL -->
+        Your browser does not support the audio element.
+    </audio>
 
     <div class="animated-text-container">
         <div class="animated-text text-sam">Welcome</div>
@@ -195,8 +199,13 @@
 
         window.onload = function() {
             restartAnimation(); 
-            setTimeout(showGetStartedButton, 3000); // Show button after 3 seconds
+            setTimeout(showGetStartedButton, 4000); // Show button after 3 seconds
         }
+
+   // Play background sound
+        const audio = document.getElementById('background-sound');
+        audio.volume = 1; // Set volume to 40%
+        audio.play();
     </script>
 
 </body>

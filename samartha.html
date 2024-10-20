@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Samarth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samarth Gs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -18,210 +19,172 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: #ecf0f3;
-        }
-        .wrapper,
-        .wrapper .img-area,
-        .social-icons a,
-        .buttons button {
-            background: #ecf0f3;
-            box-shadow: -3px -3px 7px #ffffff,
-                        3px 3px 5px #ceced1;
+            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
+            overflow: hidden;
         }
         .wrapper {
             position: relative;
-            width: 350px;
+            width: 400px;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 20px;
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
-        }
-        .wrapper .icon {
-            font-size: 17px;
-            color: #31344b;
-            position: absolute;
-            cursor: pointer;
-            opacity: 0.7;
-            top: 15px;
-            height: 35px;
-            width: 35px;
-            text-align: center;
-            line-height: 35px;
-            border-radius: 50%;
-        }
-        .wrapper .icon i {
-            position: relative;
-            z-index: 9;
-        }
-        .wrapper .icon.arrow {
-            left: 15px;
-        }
-        .wrapper .icon.dots {
-            right: 15px;
-        }
-        .wrapper .img-area {
-            height: 150px;
-            width: 150px;
-            border-radius: 50%;
-            display: flex;
             align-items: center;
             justify-content: center;
+            background: #ffffff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .img-area .inner-area {
-            height: calc(100% - 25px);
-            width: calc(100% - 25px);
+        .wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .img-area {
+            height: 160px;
+            width: 160px;
             border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
         }
-        .inner-area img {
+        .img-area:hover {
+            transform: scale(1.05);
+        }
+        .img-area img {
             height: 100%;
             width: 100%;
-            border-radius: 50%;
             object-fit: cover;
         }
-        .wrapper .name {
-            font-size: 23px;
-            font-weight: 500;
+        .name {
+            font-size: 24px;
+            font-weight: 600;
             color: #31344b;
-            margin: 10px 0 5px 0;
+            margin-bottom: 5px;
+            text-align: center;
         }
-        .wrapper .about {
+        .about {
             color: #44476a;
             font-weight: 400;
             font-size: 16px;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .wrapper .social-icons {
-            margin: 15px 0 25px 0;
+        .social-icons {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
         }
         .social-icons a {
-            position: relative;
-            height: 40px;
-            width: 40px;
-            margin: 0 5px;
-            display: inline-flex;
-            text-decoration: none;
+            height: 50px;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
+            background: #f0f0f0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .social-icons a:hover::before,
-        .wrapper .icon:hover::before,
-        .buttons button:hover:before {
-            content: "";
+        .social-icons a:hover {
+            background: #e0e0e0;
+            transform: scale(1.1);
+        }
+        .social-icons a::after {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
+            height: 300%;
+            width: 300%;
+            background: rgba(255, 255, 255, 0.5);
+            top: 50%;
+            left: 50%;
             border-radius: 50%;
-            background: #ecf0f3;
-            box-shadow: inset -3px -3px 7px #ffffff,
-                        inset 3px 3px 5px #ceced1;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.4s ease;
+            z-index: 0;
         }
-        .buttons button:hover:before {
-            z-index: -1;
-            border-radius: 5px;
+        .social-icons a:hover::after {
+            transform: translate(-50%, -50%) scale(1);
         }
-        .social-icons a i {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            line-height: 40px;
-        }
-        .social-icons a.fb i {
-            color: #4267B2;
-        }
-        .social-icons a.twitter i {
-            color: #1DA1F2;
-        }
-        .social-icons a.insta i {
-            color: #E1306C;
-        }
-        .social-icons a.yt i {
-            color: #ff0000;
-        }
-        .wrapper .buttons {
+        .buttons {
             display: flex;
             width: 100%;
             justify-content: space-between;
+            margin-bottom: 20px;
         }
         .buttons button {
-            position: relative;
-            width: 100%;
+            flex: 1;
             border: none;
-            outline: none;
-            padding: 12px 0;
-            color: #31344b;
-            font-size: 17px;
-            font-weight: 400;
-            border-radius: 5px;
+            padding: 12px;
+            margin: 0 5px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            background: #6c63ff;
+            border-radius: 10px;
             cursor: pointer;
-            z-index: 4;
+            transition: background 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .buttons button:first-child {
-            margin-right: 10px;
+        .buttons button:hover {
+            background: #5753d1;
+            transform: translateY(-2px);
         }
-        .buttons button:last-child {
-            margin-left: 10px;
+        .buttons button::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+            z-index: 0;
         }
-        .wrapper .social-share {
+        .buttons button:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .social-share {
             display: flex;
             width: 100%;
-            margin-top: 30px;
-            padding: 0 5px;
             justify-content: space-between;
         }
         .social-share .row {
             color: #31344b;
-            font-size: 17px;
-            cursor: pointer;
+            font-size: 16px;
             position: relative;
         }
         .social-share .row::before {
-            position: absolute;
             content: "";
-            height: 100%;
+            position: absolute;
+            height: 20px;
             width: 2px;
             background: #e0e6eb;
-            margin-left: -25px;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
         }
         .row:first-child::before {
-            background: none;
-        }
-        .social-share .row i.icon-2 {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            color: #31344b;
-            transform: translateY(-50%);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-        .row:nth-child(1):hover i.fa-heart,
-        .row:nth-child(2):hover i.fa-comment {
-            opacity: 1;
-            pointer-events: auto;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="img-area">
-            <div class="inner-area">
-                <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="">
-            </div>
+            <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Profile Picture">
         </div>
 
         <div class="name">Samarth Gs</div>
-        <div class="about">Your app creator
- 💻</div>
+        <div class="about">Your app creator 💻</div>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/samarthags/" class="fb"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/@samarth600/" class="twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/Samartha_gs" class="insta"><i class="fab fa-telegram"></i></a>
-
+            <a href="https://www.linkedin.com/in/samarthags/" target="_blank" class="fb"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/@samarth600/" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://t.me/Samartha_gs" target="_blank" class="insta"><i class="fab fa-telegram"></i></a>
         </div>
         <div class="buttons">
             <button onclick="openEmail()">Message</button>
@@ -229,15 +192,13 @@
         </div>
         <div class="social-share">
             <div class="row">
-            <i class="fas fa-laptop-code"></i>
-            <span>50+</span>
+                <i class="fas fa-laptop-code"></i>
+                <span>50+</span>
             </div>
             <div class="row">
-<i class="fas fa-lightbulb"></i>
-
+                <i class="fas fa-lightbulb"></i>
                 <span>Oct-2021</span>
             </div>
-
         </div>
     </div>
 

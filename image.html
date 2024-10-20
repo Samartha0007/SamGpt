@@ -3,201 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam AI</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOMR/VBBP/C9TnV0EHR6R4fImlvIS1N5G09S6ob4Vw5fV/5NdW5KDX74HQBY3A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sam-Image Carousel</title>
     <style>
-        * {
+        body {
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            width: 100%;
-            font-family: 'Black Ops One', sans-serif; /* Changed to Black Ops */
-            background: linear-gradient(135deg, #eaeaea, #ffffff); /* Subtle Gradient Background */
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            position: relative; 
+            height: 100vh;
         }
 
-        .animated-text-container {
+        .container {
+            text-align: center;
             position: relative;
-            height: 100px;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            font-size: 4rem;
-            color: #333; 
+            max-width: 600px;
         }
 
-        /* Individual Text Elements */
-        .animated-text {
-            position: absolute;
-            opacity: 0; 
-            white-space: nowrap;
-            transition: opacity 0.5s ease; 
-        }
-
-        @keyframes slideIn {
-            0% {
-                opacity: 0; 
-                transform: translateX(-100%); 
-            }
-            10% {
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-            0% {
-                opacity: 1;
-            }
-        }
-
-        .text-sam { animation: slideIn 3s forwards; animation-delay: 0s; }
-        .text-gpt { animation: slideIn 3s forwards; animation-delay: 2s; }
-        .text-explore { animation: slideIn 3s forwards; animation-delay: 4s; }
-        .text-one { animation: slideIn 3s forwards; animation-delay: 6s; }
-        .text-two { animation: slideIn 3s forwards; animation-delay: 8s; }
-        .text-three { animation: slideIn 3s forwards; animation-delay: 10s; }
-        .text-four { animation: slideIn 3s forwards; animation-delay: 12s; }
-        .text-five { animation: slideIn 3s forwards; animation-delay: 14s; }
-        .text-six { animation: slideIn 3s forwards; animation-delay: 16s; }
-        .text-seven { animation: slideIn 3s forwards; animation-delay: 18s; }
-        .text-eight { animation: slideIn 3s forwards; animation-delay: 20s; }
-        .text-nine { animation: slideIn 3s forwards; animation-delay: 22s; }
-        .text-ten { animation: slideIn 3s forwards; animation-delay: 24s; }
-
-        @media (max-width: 768px) {
-            .animated-text {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .animated-text {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* Get Started UI/UX Design */
+        /* Cool Get Started Button */
         .get-started-container {
-            position: absolute;
-            bottom: 30px; /* Position from the bottom */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Adjust for center alignment */
-            text-align: center; /* Center text inside container */
-            display: none; /* Initially hidden */
+            text-align: center;
+            margin-top: 20px;
         }
 
         .get-started-text {
             display: inline-block;
-            padding: 15px 80px; /* Padding for the text */
-            font-size: 0.7rem; /* Font size for text */
-            color: #ffffff; /* Text color */
-            background: linear-gradient(135deg, #6a5acd, #8a2be2); /* Gradient background */
-            border: none; /* Remove default border */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Shadow effect */
-            text-transform: uppercase; /* Uppercase text */
-            letter-spacing: 1px; /* Spacing between letters */
-            position: relative; /* Position for hover effect */
-            overflow: hidden; /* Hide overflow for animation */
-            cursor: default; /* Default cursor */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for effects */
-            font-weight: bold; /* Bold text */
-            text-decoration: none; /* Remove underline */
+            padding: 15px 40px;
+            font-size: 0.8rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #6a5acd, #8a2be2);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
         }
 
-        .get-started-text::before {
-            content: '';
+        .get-started-text:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #8a2be2, #6a5acd);
+        }
+
+        /* Carousel CSS */
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 500px;
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
             position: absolute;
-            top: 0; /* Start from the top */
-            left: 0; /* Start from the left */
-            right: 0; /* Expand to the right */
-            bottom: 0; /* Expand to the bottom */
-            background: rgba(255, 255, 255, 0.2); /* White overlay */
-            border-radius: 20px; /* Match text radius */
-            transform: scale(0); /* Start hidden */
-            transition: transform 0.3s ease; /* Transition for hover effect */
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            transition: left 1s ease, opacity 1s ease;
+            opacity: 0;
         }
 
-        .get-started-text:hover::before {
-            transform: scale(1); /* Scale overlay on hover */
+        .carousel img.active {
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
         }
 
-        .get-started-text:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
-        }
-
-        .get-started-text:hover {
-            color: black; /* Change text color on hover */
-            transition: color 0.3s ease; /* Transition for text color */
+        .carousel img.prev {
+            left: -100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="animated-text-container">
-        <div class="animated-text text-sam">Welcome</div>
-        <div class="animated-text text-gpt">To</div>
-        <div class="animated-text text-explore">Sam✨</div>
-        <div class="animated-text text-one">Enhance 🙃</div>
-        <div class="animated-text text-two">Explore 😇</div>
-        <div class="animated-text text-three">Future AI 🚀</div>
-        <div class="animated-text text-four">Search Anything!</div>
-        <div class="animated-text text-five">Generate Images 🫠</div>
-        <div class="animated-text text-six">Explore quotes 🙂‍↔️</div>
-        <div class="animated-text text-seven">Advanced UI UX ✌️</div>
-        <div class="animated-text text-eight">GPT Model 🥰</div>
-        <div class="animated-text text-ten">Let's Start 💯</div>
-    </div>
+    <div class="container">
+        <!-- Image Carousel -->
+        <div class="carousel" id="carousel">
+            <img src="https://i.ibb.co/xCsFDvY/a-16-year-student-is-in-his-room-with-sitting-in-bed-and-the-room-is-full-like-study-table-and-pc-an.jpg" alt="Image 1" class="active">
+            <img src="https://i.ibb.co/cvh8mvt/create-like-welcome-to-sam-ai-with-sub-text-enhance-the-beauty-of-ai-in-a-normal-image-view.jpg" alt="Image 2">
+            <img src="https://i.ibb.co/s3RKr15/IMG-20240908-215152-181.jpg" alt="Image 3">
+            <img src="https://i.ibb.co/Fwf0s5S/16-year-boy-cool-and-standard-in-his-room-with-samarthags-cloud-text-in-the-wall-on-3d-but-look-like.jpg" alt="Image 4">
+        </div>
 
-    <div class="get-started-container" id="get-started-container">
-        <a href="javascript:void(0)" onclick="storeUserVisit()" class="get-started-text">Get Started</a>
+        <!-- Get Started Button -->
+        <div class="get-started-container">
+            <a href="#" class="get-started-text" id="getStartedButton">Generate Your Dream</a>
+        </div>
     </div>
 
     <script>
-        // Check if the user has already visited and clicked Get Started
-        if (localStorage.getItem('visited') === 'true') {
-            // Redirect to menu.html directly if they have visited
-            window.location.href = '/menu.html';
+        // Get Started button logic to open Gmail
+        const getStartedButton = document.getElementById("getStartedButton");
+
+        getStartedButton.onclick = function() {
+            const subject = encodeURIComponent("Enter your Telegram ID or other profile");
+            const body = encodeURIComponent("Please tell something about your dream image 🙃\nExample: A 16-year student studying at his desk, etc...");
+            const mailtoLink = `mailto:samarthags121@gmail.com?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+        };
+
+        // Image Carousel Logic
+        const images = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            images[currentIndex].classList.add('prev');
+
+            currentIndex = (currentIndex + 1) % images.length;
+
+            images[currentIndex].classList.add('active');
+
+            setTimeout(() => {
+                images.forEach((img, index) => {
+                    if (index !== currentIndex) {
+                        img.classList.remove('prev');
+                    }
+                });
+            }, 1000);
         }
 
-        function storeUserVisit() {
-            // Store in localStorage when the user clicks Get Started
-            localStorage.setItem('visited', 'true');
-            // Redirect to menu.html after storing
-            window.location.href = '/menu.html';
-        }
-
-        function showGetStartedButton() {
-            const getStartedContainer = document.getElementById('get-started-container');
-            getStartedContainer.style.display = 'block'; // Show the button after 3 seconds
-        }
-
-        function restartAnimation() {
-            const texts = document.querySelectorAll('.animated-text');
-            texts.forEach((text, index) => {
-                text.style.opacity = 0; 
-                text.style.animation = 'none'; 
-                void text.offsetWidth; 
-                text.style.animation = `slideIn 3s forwards ${index * 2}s`; 
-            });
-        }
-
-        window.onload = function() {
-            restartAnimation(); 
-            setTimeout(showGetStartedButton, 3000); // Show button after 3 seconds
-        }
+        // Set interval for carousel
+        setInterval(showNextImage, 2000);
     </script>
-
 </body>
 </html>

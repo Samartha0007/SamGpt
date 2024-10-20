@@ -93,8 +93,7 @@
             left: 50%; /* Center horizontally */
             transform: translateX(-50%); /* Adjust for center alignment */
             text-align: center; /* Center text inside container */
-            opacity: 0; /* Initially hidden */
-            transition: opacity 0.5s ease; /* Smooth appearance */
+            display: none; /* Initially hidden */
         }
 
         .get-started-text {
@@ -146,11 +145,6 @@
 </head>
 <body>
 
-<audio id="background-sound" loop>
-        <source src="https://dl.sndup.net/ny4s7/Winterlands%20II-[AudioTrimmercom].mp3" type="audio/mpeg"> <!-- Replace with your audio file URL -->
-        Your browser does not support the audio element.
-    </audio>
-
     <div class="animated-text-container">
         <div class="animated-text text-sam">Welcome</div>
         <div class="animated-text text-gpt">To</div>
@@ -166,11 +160,29 @@
         <div class="animated-text text-ten">Let's Start 💯</div>
     </div>
 
-    <div class="get-started-container">
-        <a href="/menu.html" class="get-started-text">Get Started</a>
+    <div class="get-started-container" id="get-started-container">
+        <a href="javascript:void(0)" onclick="storeUserVisit()" class="get-started-text">Get Started</a>
     </div>
 
     <script>
+        // Check if the user has already visited and clicked Get Started
+        if (localStorage.getItem('visited') === 'true') {
+            // Redirect to menu.html directly if they have visited
+            window.location.href = '/menu.html';
+        }
+
+        function storeUserVisit() {
+            // Store in localStorage when the user clicks Get Started
+            localStorage.setItem('visited', 'true');
+            // Redirect to menu.html after storing
+            window.location.href = '/menu.html';
+        }
+
+        function showGetStartedButton() {
+            const getStartedContainer = document.getElementById('get-started-container');
+            getStartedContainer.style.display = 'block'; // Show the button after 3 seconds
+        }
+
         function restartAnimation() {
             const texts = document.querySelectorAll('.animated-text');
             texts.forEach((text, index) => {
@@ -181,36 +193,10 @@
             });
         }
 
-        function showGetStarted() {
-            const getStartedContainer = document.querySelector('.get-started-container');
-            setTimeout(() => {
-                getStartedContainer.style.opacity = 1; // Show after 3 seconds
-            }, 4000);
-        }
-
-        function redirectToMenuIfVisited() {
-            if (localStorage.getItem('visited')) {
-                window.location.href = '/menu.html'; // Redirect if already visited
-            } else {
-                localStorage.setItem('visited', 'true'); // Mark as visited
-            }
-        }
-
         window.onload = function() {
-            redirectToMenuIfVisited(); 
             restartAnimation(); 
-            showGetStarted(); // Show "Get Started" button after delay
-
-            setInterval(() => {
-                restartAnimation();
-            }, 26 * 1000); 
+            setTimeout(showGetStartedButton, 3000); // Show button after 3 seconds
         }
-
-
-        // Play background sound
-        const audio = document.getElementById('background-sound');
-        audio.volume = 1; // Set volume to 40%
-        audio.play();
     </script>
 
 </body>

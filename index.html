@@ -146,6 +146,11 @@
 </head>
 <body>
 
+<audio id="background-sound" loop>
+        <source src="https://dl.sndup.net/ny4s7/Winterlands%20II-[AudioTrimmercom].mp3" type="audio/mpeg"> <!-- Replace with your audio file URL -->
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="animated-text-container">
         <div class="animated-text text-sam">Welcome</div>
         <div class="animated-text text-gpt">To</div>
@@ -180,7 +185,7 @@
             const getStartedContainer = document.querySelector('.get-started-container');
             setTimeout(() => {
                 getStartedContainer.style.opacity = 1; // Show after 3 seconds
-            }, 5000);
+            }, 4000);
         }
 
         function redirectToMenuIfVisited() {
@@ -200,6 +205,12 @@
                 restartAnimation();
             }, 26 * 1000); 
         }
+
+
+        // Play background sound
+        const audio = document.getElementById('background-sound');
+        audio.volume = 1; // Set volume to 40%
+        audio.play();
     </script>
 
 </body>

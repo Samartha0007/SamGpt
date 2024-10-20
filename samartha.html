@@ -6,7 +6,7 @@
     <title>Samarth Gs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
 
         * {
             margin: 0;
@@ -14,111 +14,109 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+
         body {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
             overflow: hidden;
+            padding: 20px; /* Added padding for mobile spacing */
         }
-        .wrapper {
-            position: relative;
-            width: 400px;
-            padding: 30px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .wrapper:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
+
         .img-area {
-            height: 160px;
-            width: 160px;
+            height: 120px;
+            width: 120px;
             border-radius: 50%;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             transition: transform 0.3s ease;
         }
+
         .img-area:hover {
             transform: scale(1.05);
         }
+
         .img-area img {
             height: 100%;
             width: 100%;
             object-fit: cover;
         }
+
         .name {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 28px; /* Adjusted size for mobile */
+            font-weight: 500;
             color: #31344b;
-            margin-bottom: 5px;
+            margin: 10px 0;
             text-align: center;
+            animation: fadeIn 1s;
         }
-        .about {
-            color: #44476a;
-            font-weight: 400;
-            font-size: 16px;
+
+        .tagline {
+            font-size: 16px; /* Adjusted size for mobile */
+            color: #777;
+            margin-bottom: 10px;
             text-align: center;
-            margin-bottom: 20px;
+            animation: fadeIn 1.5s;
         }
+
+        .emoji-animation {
+            font-size: 40px; /* Adjusted for visibility */
+            animation: typing 2s steps(5) forwards, blink 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 30px; /* Adjust width based on the emoji length */
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 30px; } /* Adjust width based on the emoji length */
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
         .social-icons {
-            margin-bottom: 20px;
+            margin: 10px 0;
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
+
         .social-icons a {
-            height: 50px;
-            width: 50px;
+            height: 50px; 
+            width: 50px; 
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: #f0f0f0;
+            border-radius: 20%;
+            background: transparent;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: background 0.3s ease, transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            text-decoration: none; /* Remove underline */
         }
+
         .social-icons a:hover {
             background: #e0e0e0;
             transform: scale(1.1);
         }
-        .social-icons a::after {
-            content: '';
-            position: absolute;
-            height: 300%;
-            width: 300%;
-            background: rgba(255, 255, 255, 0.5);
-            top: 50%;
-            left: 50%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.4s ease;
-            z-index: 0;
-        }
-        .social-icons a:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
+
         .buttons {
             display: flex;
             width: 100%;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin: 20px 0; /* Adjusted margin for spacing */
         }
+
         .buttons button {
             flex: 1;
             border: none;
-            padding: 12px;
+            padding: 10px; /* Adjusted size */
             margin: 0 5px;
-            font-size: 16px;
+            font-size: 14px; /* Adjusted size */
             font-weight: 500;
             color: #ffffff;
             background: #6c63ff;
@@ -128,78 +126,50 @@
             position: relative;
             overflow: hidden;
         }
+
         .buttons button:hover {
             background: #5753d1;
             transform: translateY(-2px);
         }
-        .buttons button::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 300%;
-            height: 300%;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.5s ease;
-            z-index: 0;
-        }
-        .buttons button:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
+
         .social-share {
             display: flex;
             width: 100%;
             justify-content: space-between;
+            color: ;
+            font-size: 14px; /* Adjusted size for mobile */
+            margin-top: 10px; /* Added margin for spacing */
         }
-        .social-share .row {
-            color: #31344b;
-            font-size: 16px;
-            position: relative;
-        }
-        .social-share .row::before {
-            content: "";
-            position: absolute;
-            height: 20px;
-            width: 2px;
-            background: #e0e6eb;
-            left: -15px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .row:first-child::before {
-            display: none;
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="img-area">
-            <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Profile Picture">
-        </div>
+    <div class="img-area">
+        <img src="https://i.ibb.co/w4v43ts/In-Shot-20240917-142140696-2.jpg" alt="Profile Picture">
+    </div>
 
-        <div class="name">Samarth Gs</div>
-        <div class="about">Your app creator 💻</div>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/samarthags/" target="_blank" class="fb"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/@samarth600/" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/Samartha_gs" target="_blank" class="insta"><i class="fab fa-telegram"></i></a>
-        </div>
-        <div class="buttons">
-            <button onclick="openEmail()">Message</button>
-            <button onclick="openWebsite()">Subscribe</button>
-        </div>
-        <div class="social-share">
-            <div class="row">
-                <i class="fas fa-laptop-code"></i>
-                <span>50+</span>
-            </div>
-            <div class="row">
-                <i class="fas fa-lightbulb"></i>
-                <span>Oct-2021</span>
-            </div>
-        </div>
+    <div class="name">Samarth Gs</div>
+    <div class="tagline">Your App Creator</div>
+   
+    
+    <div class="social-icons">
+        <a href="https://www.linkedin.com/in/samarthags/" target="_blank" class="fb"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/@samarth600/" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://t.me/Samartha_gs" target="_blank" class="insta"><i class="fab fa-telegram"></i></a>
+    </div>
+    
+    <div class="buttons">
+        <button onclick="openEmail()">Message</button>
+        <button onclick="openWebsite()">Subscribe</button>
+    </div>
+    
+    <div class="social-share">
+        <div class="row"><i class="fas fa-laptop-code"></i><span> 50+</span></div>
+        <div class="row"><i class="fas fa-lightbulb"></i><span> Oct-2020</span></div>
     </div>
 
     <script>

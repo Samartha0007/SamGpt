@@ -93,6 +93,8 @@
             left: 50%; /* Center horizontally */
             transform: translateX(-50%); /* Adjust for center alignment */
             text-align: center; /* Center text inside container */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease; /* Smooth appearance */
         }
 
         .get-started-text {
@@ -174,18 +176,31 @@
             });
         }
 
+        function showGetStarted() {
+            const getStartedContainer = document.querySelector('.get-started-container');
+            setTimeout(() => {
+                getStartedContainer.style.opacity = 1; // Show after 3 seconds
+            }, 5000);
+        }
+
+        function redirectToMenuIfVisited() {
+            if (localStorage.getItem('visited')) {
+                window.location.href = '/menu.html'; // Redirect if already visited
+            } else {
+                localStorage.setItem('visited', 'true'); // Mark as visited
+            }
+        }
+
         window.onload = function() {
+            redirectToMenuIfVisited(); 
             restartAnimation(); 
+            showGetStarted(); // Show "Get Started" button after delay
 
             setInterval(() => {
                 restartAnimation();
             }, 26 * 1000); 
         }
-            function redirectToMenu() {
-    
-    }      
     </script>
 
 </body>
 </html>
-

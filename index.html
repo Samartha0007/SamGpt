@@ -1,212 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam AI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite</title>
+  <!-- Linking Google Fonts For Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="shortcut icon" href="https://i.ibb.co/JkJPs03/images-2.jpg" type="image/webp">
+  <link rel="icon" href="https://i.ibb.co/JkJPs03/images-2.jpg" type="image/webp">
+  <style> 
+  /* Import Google Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOMR/VBBP/C9TnV0EHR6R4fImlvIS1N5G09S6ob4Vw5fV/5NdW5KDX74HQBY3A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            font-family: 'Black Ops One', sans-serif; /* Changed to Black Ops */
-            background: linear-gradient(135deg, #eaeaea, #ffffff); /* Subtle Gradient Background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative; 
-        }
+:root {
+  /* Dark mode colors */
+  --text-color: #E3E3E3;
+  --subheading-color: #828282;
+  --placeholder-color: #A6A6A6;
+  --primary-color: #242424;
+  --secondary-color: #383838;
+  --secondary-hover-color: #444;
+  --outgoing-color: #505050; /* Lighter background for outgoing messages */
+}
 
-        .animated-text-container {
-            position: relative;
-            height: 100px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            font-size: 4rem;
-            color: #333; 
-        }
+body {
+  background: var(--primary-color);
+}
 
-        /* Individual Text Elements */
-        .animated-text {
-            position: absolute;
-            opacity: 0; 
-            white-space: nowrap;
-            transition: opacity 0.5s ease; 
-        }
+.header, .chat-list .message, .typing-form {
+  margin: 0 auto;
+  max-width: 980px;
+}
 
-        @keyframes slideIn {
-            0% {
-                opacity: 0; 
-                transform: translateX(-100%); 
-            }
-            10% {
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-            0% {
-                opacity: 1;
-            }
-        }
+.header {
+  margin-top: 6vh;
+  padding: 1rem;
+  overflow-x: hidden;
+}
 
-        .text-sam { animation: slideIn 3s forwards; animation-delay: 0s; }
-        .text-gpt { animation: slideIn 3s forwards; animation-delay: 2s; }
-        .text-explore { animation: slideIn 3s forwards; animation-delay: 4s; }
-        .text-one { animation: slideIn 3s forwards; animation-delay: 6s; }
-        .text-two { animation: slideIn 3s forwards; animation-delay: 8s; }
-        .text-three { animation: slideIn 3s forwards; animation-delay: 10s; }
-        .text-four { animation: slideIn 3s forwards; animation-delay: 12s; }
-        .text-five { animation: slideIn 3s forwards; animation-delay: 14s; }
-        .text-six { animation: slideIn 3s forwards; animation-delay: 16s; }
-        .text-seven { animation: slideIn 3s forwards; animation-delay: 18s; }
-        .text-eight { animation: slideIn 3s forwards; animation-delay: 20s; }
-        .text-nine { animation: slideIn 3s forwards; animation-delay: 22s; }
-        .text-ten { animation: slideIn 3s forwards; animation-delay: 24s; }
+body.hide-header .header {
+  margin: 0;
+  display: none;
+}
 
-        @media (max-width: 768px) {
-            .animated-text {
-                font-size: 2rem;
-            }
-        }
+.header :where(.title, .subtitle) {
+  color: var(--text-color);
+  font-weight: 500;
+  line-height: 4rem;
+}
 
-        @media (max-width: 480px) {
-            .animated-text {
-                font-size: 1.8rem;
-            }
-        }
+.header .title {
+  width: fit-content;
+  font-size: 3rem;
+  background-clip: text;
+  background: linear-gradient(to right, #2e3192, #1bffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-        /* Get Started UI/UX Design */
-        .get-started-container {
-            position: absolute;
-            bottom: 30px; /* Position from the bottom */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Adjust for center alignment */
-            text-align: center; /* Center text inside container */
-            display: none; /* Initially hidden */
-        }
+.header .subtitle {
+  font-size: 2.6rem;
+  color: var(--subheading-color);
+}
 
-        .get-started-text {
-            display: inline-block;
-            padding: 15px 80px; /* Padding for the text */
-            font-size: 0.7rem; /* Font size for text */
-            color: #ffffff; /* Text color */
-            background: linear-gradient(135deg, #6a5acd, #8a2be2); /* Gradient background */
-            border: none; /* Remove default border */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Shadow effect */
-            text-transform: uppercase; /* Uppercase text */
-            letter-spacing: 1px; /* Spacing between letters */
-            position: relative; /* Position for hover effect */
-            overflow: hidden; /* Hide overflow for animation */
-            cursor: default; /* Default cursor */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for effects */
-            font-weight: bold; /* Bold text */
-            text-decoration: none; /* Remove underline */
-        }
+.chat-list {
+  padding: 2rem 1rem 10rem; /* Reduced the bottom padding to make room for typing area */
+  max-height: calc(100vh - 120px); /* Adjusted height to ensure the chat fits well above the typing area */
+  overflow-y: auto;
+  scrollbar-color: #999 transparent;
+}
 
-        .get-started-text::before {
-            content: '';
-            position: absolute;
-            top: 0; /* Start from the top */
-            left: 0; /* Start from the left */
-            right: 0; /* Expand to the right */
-            bottom: 0; /* Expand to the bottom */
-            background: rgba(255, 255, 255, 0.2); /* White overlay */
-            border-radius: 20px; /* Match text radius */
-            transform: scale(0); /* Start hidden */
-            transition: transform 0.3s ease; /* Transition for hover effect */
-        }
+/* Align outgoing (sent by user) messages to the right */
+.chat-list .message.outgoing {
+  text-align: right;
+  display: ;
+  justify-content: ;
+  margin-left: auto;
+}
 
-        .get-started-text:hover::before {
-            transform: scale(1); /* Scale overlay on hover */
-        }
+.chat-list .message.outgoing .avatar {
+  margin-left: 0.5rem;
+}
+.chat-list .message {
+  margin-bottom: 1.5rem; /* Add space between messages */
+}
 
-        .get-started-text:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
-        }
+.chat-list .message.outgoing .text {
+  color: #fff;
+  background-color: var(--outgoing-color);
+  border-radius: 18px 0 18px 18px;
+  padding: 0.8rem 1.2rem;
+  max-width: 70%;
+  word-wrap: break-word;
+  display: inline-block;
+}
 
-        .get-started-text:hover {
-            color: black; /* Change text color on hover */
-            transition: color 0.3s ease; /* Transition for text color */
-        }
-    </style>
+/* Align incoming (received by bot) messages to the left */
+.chat-list .message.incoming {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.chat-list .message.incoming .avatar {
+  margin-right: 0.5rem;
+}
+
+.chat-list .message.incoming .text {
+  color: var(--text-color);
+  background-color: var(--secondary-hover-color);
+  border-radius: 0 18px 18px 18px;
+  padding: 0.8rem 1.2rem;
+  max-width: 70%;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.chat-list .message .avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  align-self: flex-start;
+}
+
+.chat-list .message .icon {
+  color: var(--text-color);
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  font-size: 1.25rem;
+  margin-left: 3.5rem;
+  visibility: hidden;
+}
+
+.chat-list .message:not(.loading, .error):hover .icon:not(.hide){
+  visibility: visible;
+}
+
+.chat-list .message .icon:hover {
+  background: var(--secondary-hover-color);
+}
+
+.chat-list .message.error .text {
+  color: #e55865;
+}
+
+.chat-list .message.loading .text {
+  display: none;
+}
+
+.chat-list .message .loading-indicator {
+  display: none;
+  gap: 0.8rem;
+  width: 100%;
+  flex-direction: column;
+}
+
+.chat-list .message.loading .loading-indicator {
+  display: flex;
+}
+
+.chat-list .message .loading-indicator .loading-bar:last-child {
+  width: 70%;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -800px 0;
+  }
+
+  100% {
+    background-position: 800px 0;
+  }
+}
+
+.typing-area {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  background: var(--primary-color);
+}
+
+.typing-area :where(.typing-form, .action-buttons) {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.typing-form .input-wrapper {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  position: relative;
+}
+
+.typing-form .typing-input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+  color: var(--text-color);
+  padding: 1.1rem 4rem 1.1rem 1.5rem;
+  border-radius: 100px;
+  background: var(--secondary-color);
+}
+
+.typing-form .typing-input:focus {
+  background: var(--secondary-hover-color);
+}
+
+.typing-form .typing-input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.typing-area .icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-color);
+  transition: 0.2s ease;
+}
+
+.typing-area .icon:hover {
+  background: var(--secondary-hover-color);
+}
+
+.typing-form #send-message-button {
+  position: absolute;
+  right: 0;
+  outline: none;
+  border: none;
+  transform: scale(0);
+  background: transparent;
+  transition: transform 0.2s ease;
+}
+
+.typing-form .typing-input:valid ~ #send-message-button {
+  transform: scale(1);
+}
+
+.typing-area .disclaimer-text {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  color: var(--placeholder-color);
+}
+
+/* Responsive media query code for small screens */
+@media (max-width: 768px) {
+  .header :is(.title, .subtitle) {
+    font-size: 2rem;
+    line-height: 2.6rem;
+  }
+
+  .header .subtitle {
+    font-size: 1.7rem;
+  }
+
+  .chat-list {
+    padding: 1rem;
+  }
+
+  .typing-area :where(.typing-form, .action-buttons) {
+    gap: 0.4rem;
+  }
+
+  .typing-form .input-wrapper {
+    height: 50px;
+  }
+
+  .typing-form .typing-input {
+    padding: 1.1rem 3.5rem 1.1rem 1.2rem;
+  }
+
+  .typing-area .icon {
+    height: 50px;
+    width: 50px;
+  }
+
+  .typing-area .disclaimer-text {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}
+  </style>
 </head>
 <body>
-  <audio id="background-sound" loop>
-        <source src="https://dl.sndup.net/ny4s7/Winterlands%20II-[AudioTrimmercom].mp3" type="audio/mpeg"> <!-- Replace with your audio file URL -->
-        Your browser does not support the audio element.
-    </audio>
+  <header class="header">
+    <!-- Header Greetings -->
+    <h1 class="title">Hello, I'm Elite</h1>
+    <p class="subtitle">How can I help you now?</p>
+  </header>
 
-    <div class="animated-text-container">
-        <div class="animated-text text-sam">Welcome</div>
-        <div class="animated-text text-gpt">To</div>
-        <div class="animated-text text-explore">Sam✨</div>
-        <div class="animated-text text-one">Enhance 🙃</div>
-        <div class="animated-text text-two">Explore 😇</div>
-        <div class="animated-text text-three">Future AI 🚀</div>
-        <div class="animated-text text-four">Search Anything!</div>
-        <div class="animated-text text-five">Generate Images 🫠</div>
-        <div class="animated-text text-six">Explore quotes 🙂‍↔️</div>
-        <div class="animated-text text-seven">Advanced UI UX ✌️</div>
-        <div class="animated-text text-eight">GPT Model 🥰</div>
-        <div class="animated-text text-ten">Let's Start 💯</div>
-    </div>
+  <!-- Chat List / Container -->
+  <div class="chat-list"></div>
 
-    <div class="get-started-container" id="get-started-container">
-        <a href="javascript:void(0)" onclick="storeUserVisit()" class="get-started-text">Get Started</a>
-    </div>
+  <!-- Typing Area -->
+  <div class="typing-area">
+    <form action="#" class="typing-form">
+      <div class="input-wrapper">
+        <input type="text" placeholder="Ask Me Anything" class="typing-input" required />
+      </div>
+      <div class="action-buttons">
+      </div>
+    </form>
+    <p class="disclaimer-text">
+      Made with ❤️‍🔥 by Samartha Gs </p>
+  </div>
 
-    <script>
-        // Check if the user has already visited and clicked Get Started
-        if (localStorage.getItem('visited') === 'true') {
-            // Redirect to menu.html directly if they have visited
-            window.location.href = '/menu.html';
-        }
 
-        function storeUserVisit() {
-            // Store in localStorage when the user clicks Get Started
-            localStorage.setItem('visited', 'true');
-            // Redirect to menu.html after storing
-            window.location.href = '/menu.html';
-        }
+</div>
+ <script> 
+const typingForm = document.querySelector(".typing-form");
+const chatContainer = document.querySelector(".chat-list");
 
-        function showGetStartedButton() {
-            const getStartedContainer = document.getElementById('get-started-container');
-            getStartedContainer.style.display = 'block'; // Show the button after 3 seconds
-        }
+let userMessage = null;
+let isResponseGenerating = false;
 
-        function restartAnimation() {
-            const texts = document.querySelectorAll('.animated-text');
-            texts.forEach((text, index) => {
-                text.style.opacity = 0; 
-                text.style.animation = 'none'; 
-                void text.offsetWidth; 
-                text.style.animation = `slideIn 3s forwards ${index * 2}s`; 
-            });
-        }
+const API_KEY = "AIzaSyDnyVUZZsX5myL8elDG8BsNoXONJ0QwoNk";
+const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${API_KEY}`;
 
-        window.onload = function() {
-            restartAnimation(); 
-            setTimeout(showGetStartedButton, 4000); // Show button after 3 seconds
-        }
+const predefinedResponses = {
+  "who are you": "I am Elite, your personal assistant created to assist you . I was developed by Samartha Gs. Learn more at [samarthags.cloud](https://samarthags.cloud).",
+  "who developed you": "I was developed by Samartha Gs, a 16-year-old tech enthusiast who loves web development, IoT, and AI . He has completed over 50 amazing projects!",
+  "where are you from": "I am from Golagodu, a beautiful village near Sagara in Karnataka, India .",
+  "what can you do": "I can answer your questions, provide information, and chat about various topics . Let me know how I can assist you!",
+  "who is samartha gs": "Samartha Gs is a talented 16-year-old passionate about web development, IoT, and AI. He has completed over 50 projects, including websites and apps.",
+  "do you know samartha gs": "Yes, Samartha Gs is my creator! A skilled individual passionate about technology and innovation. Learn more about him at [samarthags.cloud](https://samarthags.cloud).",
+  "samartha gs": "Samartha Gs - I am here because of him !",
+  "hi":"Hi I'm Elite-Developed by Samartha, How can I help you today?",
+  "hello":"Hello I'm Elite-Developed by Samartha, How can I help you today?",
+};
 
-   // Play background sound
-        const audio = document.getElementById('background-sound');
-        audio.volume = 1; // Set volume to 40%
-        audio.play();
-    </script>
+const findPredefinedResponse = (message) => {
+  // Normalize the message
+  message = message.toLowerCase();
 
+  // Common prefixes to ignore
+  const commonPrefixes = [
+    "tell me about",
+    "can you explain",
+    "what do you know about",
+    "do you know about",
+    "i want to know about",
+  ];
+
+  // Remove common prefixes from the user message
+  for (const prefix of commonPrefixes) {
+    if (message.startsWith(prefix)) {
+      message = message.replace(prefix, "").trim();
+      break;
+    }
+  }
+
+  const calculateSimilarity = (a, b) => {
+    const wordsA = new Set(a.split(" "));
+    const wordsB = new Set(b.split(" "));
+    const intersection = new Set([...wordsA].filter((word) => wordsB.has(word)));
+    return intersection.size / Math.max(wordsA.size, wordsB.size);
+  };
+
+  const threshold = 0.5; // Minimum similarity threshold (0 to 1)
+  let bestMatch = null;
+  let highestSimilarity = 0;
+
+  // Check each predefined response for similarity
+  for (const key in predefinedResponses) {
+    const similarity = calculateSimilarity(message, key);
+    if (similarity > highestSimilarity && similarity >= threshold) {
+      highestSimilarity = similarity;
+      bestMatch = predefinedResponses[key];
+    }
+  }
+
+  return bestMatch;
+};
+
+const createMessageElement = (content, ...classes) => {
+  const div = document.createElement("div");
+  div.classList.add("message", ...classes);
+  div.innerHTML = content;
+  return div;
+};
+
+const showTypingEffect = (text, textElement, incomingMessageDiv) => {
+  const words = text.split(" ");
+  let currentWordIndex = 0;
+
+  const typingInterval = setInterval(() => {
+    textElement.innerText +=
+      (currentWordIndex === 0 ? "" : " ") + words[currentWordIndex++];
+    incomingMessageDiv.querySelector(".icon").classList.add("hide");
+
+    if (currentWordIndex === words.length) {
+      clearInterval(typingInterval);
+      isResponseGenerating = false;
+      incomingMessageDiv.querySelector(".icon").classList.remove("hide");
+      localStorage.setItem("saved-chats", chatContainer.innerHTML);
+    }
+    chatContainer.scrollTo(0, chatContainer.scrollHeight);
+  }, 50); // Typing interval
+};
+
+const generateDelayedResponse = (response, incomingMessageDiv) => {
+  setTimeout(() => {
+    const textElement = incomingMessageDiv.querySelector(".text");
+    showTypingEffect(response, textElement, incomingMessageDiv);
+  }, 1500); // Delay of 1.5 seconds
+};
+
+const generateAPIResponse = async (incomingMessageDiv) => {
+  const textElement = incomingMessageDiv.querySelector(".text");
+  incomingMessageDiv.classList.add("loading");
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: userMessage }],
+          },
+        ],
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error.message);
+
+    const apiResponse = data.candidates[0].content.parts[0].text.replace(
+      /\*\*(.*?)\*\*/g,
+      "$1"
+    );
+    generateDelayedResponse(apiResponse, incomingMessageDiv);
+  } catch (error) {
+    isResponseGenerating = false;
+    textElement.innerText = error.message;
+    incomingMessageDiv.classList.add("error");
+  } finally {
+    incomingMessageDiv.classList.remove("loading");
+  }
+};
+
+const showLoadingAnimation = () => {
+  const html = `<div class="message-content">
+               <p class="text"></p>
+                </div>
+                <span onClick="copyMessage(this)" class="icon material-symbols-rounded">content_copy</span>`;
+
+  const incomingMessageDiv = createMessageElement(html, "incoming");
+  chatContainer.appendChild(incomingMessageDiv);
+
+  chatContainer.scrollTo(0, chatContainer.scrollHeight); // Scroll to the bottom
+  generateAPIResponse(incomingMessageDiv); // Call the API immediately
+};
+
+const copyMessage = (copyButton) => {
+  const messageText = copyButton.parentElement.querySelector(".text").innerText;
+
+  navigator.clipboard.writeText(messageText);
+  copyButton.innerText = "done";
+  setTimeout(() => (copyButton.innerText = "content_copy"), 1000);
+};
+
+const handleOutgoingChat = () => {
+  userMessage = typingForm.querySelector(".typing-input").value.trim();
+  if (!userMessage || isResponseGenerating) return;
+
+  isResponseGenerating = true;
+
+  const html = `<div class="message-content">
+
+                  <p class="text"></p>
+                </div>`;
+
+  const outgoingMessageDiv = createMessageElement(html, "outgoing");
+  outgoingMessageDiv.querySelector(".text").innerText = userMessage;
+  chatContainer.appendChild(outgoingMessageDiv);
+
+  typingForm.reset();
+  document.body.classList.add("hide-header");
+  chatContainer.scrollTo(0, chatContainer.scrollHeight);
+
+  // Check for predefined response
+  const predefinedResponse = findPredefinedResponse(userMessage);
+  if (predefinedResponse) {
+    const incomingMessageDiv = createMessageElement(
+      `<div class="message-content">
+         <p class="text"></p>
+       </div>
+       <span onClick="copyMessage(this)" class="icon material-symbols-rounded">content_copy</span>`,
+      "incoming"
+    );
+    chatContainer.appendChild(incomingMessageDiv);
+    chatContainer.scrollTo(0, chatContainer.scrollHeight);
+    generateDelayedResponse(predefinedResponse, incomingMessageDiv);
+  } else {
+    // Otherwise, call the API
+    showLoadingAnimation();
+  }
+};
+
+typingForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  handleOutgoingChat();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("download-modal");
+
+  // Show modal after 3 seconds (example)
+  setTimeout(() => {
+    modal.classList.add("show");
+  }, 3000);
+
+  // Close modal function
+  window.closeModal = function () {
+    modal.classList.remove("show");
+  };
+});
+
+</script>
 </body>
 </html>
